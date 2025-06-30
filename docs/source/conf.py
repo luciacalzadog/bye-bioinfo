@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Bye - Bioinformatics'
+project = 'ByE Bioinformatics'
 copyright = '2025, Lucia Calzado'
 author = 'Lucia Calzado'
 
@@ -18,7 +18,6 @@ extensions = []
 templates_path = ['_templates']
 exclude_patterns = []
 
-root_doc = 'idx'
 
 
 # -- Options for HTML output -------------------------------------------------
