@@ -1,0 +1,88 @@
+/* Top and Bottom Banner Strips */
+#TopBanner, #BottomBanner {
+    background-color: #2b6cb0; /* ACCENT_COLOR */
+    color: #ffffff; /* TEXT_COLOR */
+    padding: 8px 10px;
+    margin: 0px;
+}
+
+/* Title label in the top banner */
+#TopBanner QLabel {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Counter and status labels */
+#TopBanner QLabel {
+    font-weight: bold;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #2b6cb0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #1a4e86;
+}
+
+/* DraggableLabel */
+QLabel[class="DraggableLabel"] {
+    background-color: lightblue;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    color: black;
+}
+
+/* DropBox */
+QFrame#DropBox {
+    background-color: #eeeeee;
+    border: 2px solid #cccccc;  /* Changed from dashed to solid light gray */
+    min-height: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* SpawningBox */
+QFrame#SpawningBox {
+    background-color: #f9f9f9; /* light gray */
+    border: 2px solid #aaaaaa;
+    min-height: 200px;
+    margin: 0 10px 10px 10px;
+}
+
+/* Placeholder label inside DropBox */
+QFrame#DropBox QLabel {
+    color: #aaaaaa;
+    font-style: italic;
+}
+
+/* ScrollArea - no frame */
+QScrollArea {
+    border: none;
+}
+
+/* Layout tweak: make drop boxes containers half width */
+QFrame > QVBoxLayout > QFrame#DropBox {
+    min-width: 50%;
+}
+
+/* Remove spacing/margin from banners to stretch fully */
+#TopBanner, #BottomBanner {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+/* Vertical margin between drop boxes */
+QFrame#DropBox + QFrame#DropBox {
+    margin-top: 20px;
+}
