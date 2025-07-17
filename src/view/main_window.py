@@ -16,6 +16,7 @@ class DraggableLabel(QLabel):
         self.setProperty("class", "DraggableLabel")
         self.setAlignment(Qt.AlignCenter)
         self.setFixedHeight(40)
+        self.setStyleSheet("")
         self.setAttribute(Qt.WA_DeleteOnClose)  # Optional: auto-delete if removed
 
     def mousePressEvent(self, event: QMouseEvent):
@@ -92,6 +93,8 @@ class SpawningBox(QFrame):
         self.scroll = QScrollArea()
         self.scroll.setWidgetResizable(True)
         self.scroll.setFrameShape(QFrame.NoFrame)
+        self.scroll.viewport().setObjectName("qt_scrollarea_viewport")
+        self.scroll.viewport().setStyleSheet("background-color: rgb(45, 3, 117);")
 
         container = QWidget()
         self.layout = QVBoxLayout(container)
@@ -104,13 +107,15 @@ class SpawningBox(QFrame):
 
     def add_string_block(self, text: str):
         block = DraggableLabel(text)
+        block.setStyleSheet("background-color: rgb(223, 165, 20);")
         self.layout.addWidget(block)
 
 
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Drag-and-Drop Spawner")
+        self.setObjectName("MainWindow")
+        self.setWindowTitle("Gene Genius")
         self.setMinimumSize(800, 600)
 
         self.string_list = []
@@ -222,7 +227,6 @@ class MainWindow(QWidget):
         else:
             self.string_timer.stop()
 
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
@@ -231,13 +235,14 @@ if __name__ == "__main__":
         app.setStyleSheet(f.read())
 
     window = MainWindow()
-    window.show()
+    window.showMaximized()
 
     # Example usage
     window.start_string_feed(
-        ["Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta"],
+        ['TATTC', 'ATCCG', 'GAATC', 'CCTTC', 'AAAGG', 'GCTTC', 'ATAGC', 'ATTCG', 'GATCC', 'AAAGC', 'CCGTC', 'AAGGC', 'TTCCG', 'ATCGG', 'GATTC', 'GCCTC'],
         initial_delay_ms=1000,
         acceleration=0.9
     )
 
     sys.exit(app.exec())
+
