@@ -24,7 +24,7 @@ class IntroWidow(QMainWindow):
         ## Missing signal
         buttons.addWidget(third_grade_button)
 
-        sixth_grade_button = QPushButton('6th')
+        sixth_grade_button = QPushButton('5th')
         ## Missing signal
         buttons.addWidget(sixth_grade_button)
 

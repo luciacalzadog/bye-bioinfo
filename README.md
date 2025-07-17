@@ -58,5 +58,5 @@ Then, add "analysis" tool, where a certain time passes where the student can't d
 
 **SHOULDS**
 1. There is a point based system. Students can improve score
-2. There are 2 modes (3rd grade and 6th grade), WOULD: teacher can add a new set of sequences
+2. There are 2 modes (3rd grade and 5th grade), WOULD: teacher can add a new set of sequences
 3. There is an analysis mode that accelerates performance, and comes at a time cost from doing it manually (tune to make it good to use)
