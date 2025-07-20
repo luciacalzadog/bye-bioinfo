@@ -50,15 +50,17 @@ Choose your grade level:''')
         l_seqs = seqs.get_shuffled_list()
         self.main_window.start_string_feed(
             l_seqs,
-            initial_delay_ms=900,
+            initial_delay_ms=3000,
             acceleration=0.99
         )
 
     def fifth_grade(self):
         self.main_window = MainWindow()
         self.main_window.showMaximized()
+        seqs = SequenceFile('src/data/seqs_5.txt')
+        l_seqs = seqs.get_shuffled_list()
         self.main_window.start_string_feed(
-            ['HE', 'SHE', 'IT', 'YAY'],
-            initial_delay_ms=900,
-            acceleration=0.87
+            l_seqs,
+            initial_delay_ms=3000,
+            acceleration=0.96
         )

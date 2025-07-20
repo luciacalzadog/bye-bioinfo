@@ -27,10 +27,8 @@ class SequenceFile():
             for one_line in f:
                 line = one_line.split()
                 if line[0] == 'GROUP' or line[0] == 'GRADE:':
-                    print(line)
                     pass
                 else:
-                    print('****', line)
                     list_seqs.append(line[0])
         random.shuffle(list_seqs)
         return list_seqs
