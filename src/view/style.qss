@@ -90,3 +90,19 @@ QFrame#DropBox + QFrame#DropBox {
 QWidget#MainWindow {
     background-color: rgb(248, 245, 216);
 }
+
+QWidget#IntroWidow {
+    background-color: rgb(248, 245, 216);
+}
+
+#IntroText {
+    font-size: 16px;
+}
+
+#InfoWindow {
+    background-color: rgb(248, 245, 216);
+}
+
+#InstructionText {
+    font-size: 18 px;
+}

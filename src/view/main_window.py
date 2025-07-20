@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt, QMimeData, QTimer
 from PySide6.QtGui import QDragEnterEvent, QDropEvent, QDrag, QMouseEvent, QPixmap
-
+from src.view.info_window import InfoWindow
 
 class DraggableLabel(QLabel):
     def __init__(self, text):
@@ -133,6 +133,8 @@ class MainWindow(QWidget):
         self.setup_lower_drop_zone()
         self.setup_bottom_bar()
 
+        self.info_window = None
+
     def setup_top_banner(self):
         banner = QFrame()
         banner.setObjectName("TopBanner")
@@ -197,6 +199,7 @@ class MainWindow(QWidget):
         footer_layout.setContentsMargins(10, 5, 10, 5)
 
         self.left_button = QPushButton("Info")
+        self.left_button.clicked.connect(self.launch_info)
         self.center_button = QPushButton("Analyze")
         self.right_button = QPushButton("Quit")
 
@@ -227,22 +230,7 @@ class MainWindow(QWidget):
         else:
             self.string_timer.stop()
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    # Load external style sheet
-    with open("src/view/style.qss", "r") as f:
-        app.setStyleSheet(f.read())
-
-    window = MainWindow()
-    window.showMaximized()
-
-    # Example usage
-    window.start_string_feed(
-        ['TATTC', 'ATCCG', 'GAATC', 'CCTTC', 'AAAGG', 'GCTTC', 'ATAGC', 'ATTCG', 'GATCC', 'AAAGC', 'CCGTC', 'AAGGC', 'TTCCG', 'ATCGG', 'GATTC', 'GCCTC'],
-        initial_delay_ms=1000,
-        acceleration=0.9
-    )
-
-    sys.exit(app.exec())
+    def launch_info(self):
+        self.info_window = InfoWindow()
+        self.info_window.show()
 
