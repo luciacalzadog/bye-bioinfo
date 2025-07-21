@@ -170,8 +170,12 @@ class MainWindow(QWidget):
         left_layout.setSpacing(20)  # vertical spacing between boxes
         left_layout.setContentsMargins(0, 0, 0, 0)
         left_layout.setAlignment(Qt.AlignTop)
-        left_layout.addWidget(DropBox("Left 1"))
-        left_layout.addWidget(DropBox("Left 2"))
+        left_drop_box = DropBox("Left 1")
+        left_drop_box.setObjectName('LeftTopBox')
+        left_layout.addWidget(left_drop_box)
+        left2_drop_box = DropBox("Left 2")
+        left2_drop_box.setObjectName('LeftBotBox')
+        left_layout.addWidget(left2_drop_box)
         left_container.setLayout(left_layout)
         left_container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
@@ -181,8 +185,12 @@ class MainWindow(QWidget):
         right_layout.setSpacing(20)  # vertical spacing between boxes
         right_layout.setContentsMargins(0, 0, 0, 0)
         right_layout.setAlignment(Qt.AlignTop)
-        right_layout.addWidget(DropBox("Right 1"))
-        right_layout.addWidget(DropBox("Right 2"))
+        right_drop_box = DropBox("Right 1")
+        right_drop_box.setObjectName('RightTopBox')
+        right_layout.addWidget(right_drop_box)
+        right2_drop_box = DropBox("Right 2")
+        right2_drop_box.setObjectName('RightBotBox')
+        right_layout.addWidget(right2_drop_box)
         right_container.setLayout(right_layout)
         right_container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 

@@ -19,11 +19,4 @@ if __name__ == "__main__":
     intro_window = IntroWidow()
     intro_window.show()
 
-    # # Example usage
-    # window.start_string_feed(
-    #     ["Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta"],
-    #     initial_delay_ms=1000,
-    #     acceleration=0.9
-    # )
-
     sys.exit(app.exec())

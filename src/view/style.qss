@@ -106,3 +106,19 @@ QWidget#IntroWidow {
 #InstructionText {
     font-size: 18 px;
 }
+
+#LeftTopBox {
+    background-color: #729862;
+}
+
+#LeftBotBox {
+    background-color: #41F2E0;
+}
+
+#RightTopBox {
+    background-color: #EA9E89;
+}
+
+#RightBotBox {
+    background-color: #AC2082;
+}
