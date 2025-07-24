@@ -20,4 +20,6 @@ python -m src.main
 The window should pop up.
 
 ## What to do with it
-The game window opens to an introductory window where the grade level can be chosen.
+The game window opens to an introductory window where the grade level can be chosen. This determines which sequences are used, and how fast they appear (tuning the difficulty).
+
+After clicking on a grade level, the

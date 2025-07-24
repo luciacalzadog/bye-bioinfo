@@ -7,6 +7,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QMimeData, QTimer
 from PySide6.QtGui import QDragEnterEvent, QDropEvent, QDrag, QMouseEvent, QPixmap
 from src.view.info_window import InfoWindow
+from src.view.final_window import FinalWindow
 
 class DraggableLabel(QLabel):
     def __init__(self, text):
@@ -209,7 +210,8 @@ class MainWindow(QWidget):
         self.left_button = QPushButton("Info")
         self.left_button.clicked.connect(self.launch_info)
         self.center_button = QPushButton("Analyze")
-        self.right_button = QPushButton("Quit")
+        self.right_button = QPushButton("Finish")
+        self.right_button.clicked.connect(self.final_remarks)
 
         footer_layout.addWidget(self.left_button, alignment=Qt.AlignLeft)
         footer_layout.addStretch()
@@ -239,6 +241,10 @@ class MainWindow(QWidget):
             self.string_timer.stop()
 
     def launch_info(self):
-        self.info_window = InfoWindow()
+        self.info_window = InfoWindow(playing=True, grade=None)
         self.info_window.show()
 
+    def final_remarks(self):
+        self.final_window = FinalWindow()
+        self.final_window.show()
+        self.close()

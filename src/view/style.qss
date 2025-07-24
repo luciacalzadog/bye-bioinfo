@@ -64,7 +64,9 @@ QFrame#DropBox QLabel {
     color:rgb(0, 0, 0);
 }
 
-
+QLabel {
+    font-size: 32 px;
+}
 
 /* ScrollArea - no frame */
 QScrollArea {
@@ -103,8 +105,8 @@ QWidget#IntroWidow {
     background-color: rgb(248, 245, 216);
 }
 
-#InstructionText {
-    font-size: 18 px;
+#FinalWindow {
+    background-color: rgb(248, 245, 216);
 }
 
 #LeftTopBox {

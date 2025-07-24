@@ -5,21 +5,29 @@ from PySide6.QtWidgets import (
     QPushButton, QFrame, QSizePolicy, QScrollArea
 )
 from PySide6.QtCore import Qt, QMimeData, QTimer
-from PySide6.QtGui import QDragEnterEvent, QDropEvent, QDrag, QMouseEvent, QPixmap
+from PySide6.QtGui import QDragEnterEvent, QDropEvent, QDrag, QMouseEvent, QPixmap, QFont
+from src.models.grade import Grade
+from src.models.sequence_file import SequenceFile
 
 class InfoWindow(QWidget):
-    def __init__(self):
+    def __init__(self, playing: bool, grade: Grade|None):
         super().__init__()
         self.setObjectName('InfoWindow')
         self.setWindowTitle('GeneGenius')
 
         self.layout = QVBoxLayout(self)
         text = QLabel(self.get_instructions())
-        text.setObjectName('InstructionText')
+        text.setFont(QFont("Arial", 18))
+        text.setObjectName('InstructionsText')
         self.layout.addWidget(text, alignment = Qt.AlignCenter)
 
         ok = QPushButton(text='OK')
-        ok.clicked.connect(self.close)
+        self.grade = grade
+
+        if playing:
+            ok.clicked.connect(self.close)
+        else:
+            ok.clicked.connect(self.open_main_window)
         self.layout.addWidget(ok, alignment=Qt.AlignCenter)
 
     def get_instructions(self):
@@ -27,3 +35,29 @@ class InfoWindow(QWidget):
         with open(file) as f:
             instructions = f.read()
         return instructions
+
+    def open_main_window(self):
+        from src.view.main_window import MainWindow
+
+        self.main_window = MainWindow()
+        self.main_window.showMaximized()
+        self.close()
+
+        if self.grade == Grade.THIRD:
+            seqs = SequenceFile('src/data/seqs_3.txt')
+            l_seqs = seqs.get_shuffled_list()
+            self.main_window.start_string_feed(
+                l_seqs,
+                initial_delay_ms=3000,
+                acceleration=0.99
+            )
+        elif self.grade == Grade.FIFTH:
+            seqs = SequenceFile('src/data/seqs_5.txt')
+            l_seqs = seqs.get_shuffled_list()
+            self.main_window.start_string_feed(
+                l_seqs,
+                initial_delay_ms=3000,
+                acceleration=0.96
+            )
+        else:
+            print('Something went wrong. The grade selection failed.')
