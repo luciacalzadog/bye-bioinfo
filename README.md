@@ -1,62 +1,57 @@
 # Broaden Your Experience Project:
 #### Lucía Calzado - 5684226
 
-## Case 1. Sequence Alignment
-During this puzzle, we want the students to compare virus genomes from different individuals infected with the same virus. In the first part of the game, the students have already seen the concept of genome assembly to obtain a “reference genome” to compare to. The goal of this case is to identify mutations in the virus genome (“variant calling”) using genome sequencing data.
+## How to run it
+After you have cloned the repository to your local machine, follow these steps to run the project:
 
-Through step-by-step assignments, the students can become familiar with the concepts of **genome indexing** and **exact matching**. A common strategy is to break the reference genome into shorter sequences (k-mers) and build a data structure (“index”) that allows quick identification of all locations where a specific sequence occurs. When a read needs to be aligned, the aligner does not scan the entire genome linearly. Instead, it uses the index to find candidate regions where part of the read matches the genome exactly. Once those regions are identified, the aligner performs a more detailed check to find the best match across the whole read, even allowing for a few mismatches or gaps if necessary. This two-stage process balances speed and accuracy. Once alignment is complete, the resulting data is stored in a format that includes each read’s location and how well it fits there.
+Navigate to this repository (outside of src still). Then run these commands to create and activate the virtual environment:
 
-After read alignment, the next step is **variant calling**, where the aligned reads are analyzed to find positions in the genome where the sample differs from the reference. The process checks how many reads support each DNA base at a given position. If the evidence is strong that a different base is present in the sample compared to the reference, it is recorded as a variant. These variants include single base changes (SNPs) as well as small insertions and deletions (indels).
+````
+conda env create -f environment.yml
+conda activate bye-bioinfo
+````
 
-## Brainstorming session:
-**Sequence clustering**
-- Drop sequence into frame, choose bin to put it in.
-    A bit like tetris, they pile up if you don't choose fast enough
-- As you level up in game, the “algorithm” highlights the relevant group region, so it becomes easier to do it fast
-- Pile them in bins horizontally stacked so they align.
+Then, also from this location, and with the environment active, run:
 
-### - Class 3: shorter and more different sequences (or less number of clusters?)
-### - Class 5: more similar clusters (more clusters?)
+```
+python -m src.main
+```
 
-**Identifying conserved regions**
-- Have them add the sequences from a bin into an “analyzer tool”. This creates a graph like this:
-- They can stretch the sequence (for cases of insertion) or move the bin they put it in, to try to get the conserved region correct.
+The window should pop up.
 
-### - Class 3 would already have easier clusters, but maybe have them not need to adjust their sequence, just put it in and choose the conserved part
+## What to do with it
+The game window opens to an introductory window where the grade level can be chosen. This determines which sequences are used, and how fast they appear (tuning the difficulty).
 
-**Predicting and comparing protein structures**
-This I’m the most unsure about… what part of this are we meant to be testing?
+After clicking on a grade level, the instructions are shown in another window. Click "ok" to move on to the game. Once the game has started (after a couple of seconds), sequences appear in the purple box at the top. Drag and drop these sequences into the dropping boxes (four rectangles of different colors). Try to put all sequences of the same cluster in the same box.
 
-**If testing the identifying of vaccine candidates:**
-- Click the structures to pop in 3D. Click a light switch to color the conserved region
-- Select candidate
-- If conserved reg is on the outside, and they select it, they win
+If you need to access the instructions again, click on the "Info" button at the bottom left. Once you are done, click on the "Finish" button at the bottom right to launch the final explanation window.
 
-- Or Same thing as before, but show animation of the antibodies, (magnet for pink?)
+## Proposed changes
+There are many avenues to expand and improve the game. These are my suggestions of how to continue:
 
-**If testing protein structure understanding:**
-- from sequence of shapes, originally play to see what they “like” to do (ex. left click or right click for helix or sheet, or arrow keys, at a point)
-- As they level up, regions of helixes and sheets get automatically converted, you just need to move them (like a little to the left)
-- Next level would be “domain” recognition, entire sections are automatically generated
+- Incorporate code to keep track of which sequences are at each dropping box.
 
-Or like 1024, you get tiles that when met with your sequence “evolve” to the next level of complexity:
-- primary → sec folding → ternary
+*I think this is the most important upcoming change. Adding an updating dictionary that keeps track of the sequences in each dropping box would allow these to be compared to the correct dictionary (which can be obtained with the methods in src/models/sequence_file) and get a number of accurate guesses. This should be incorporated into a points system to get the game a way to win it.*
 
-Unlock “longer” tiles the more you play
+- Fix the counter to be a working stopwatch.
 
-## Objective for now:
-Develop a version of tetris, where the (DNA) sequences fall into the screen, and the students drag them into one of four "boxes" (clusters). If wrong cluster (aka, cluster already has a sequence that is not of the same group) sequence should not "latch" (maybe sound/visual effect). Sequences stay in their cluster until the end of the game.
+*Right now, the counter is not working, and confuses the players. It makes sense to change it to a stopwatch to also introduce some perceived time constrain, and hence more investment.*
 
-Then, add "analysis" tool, where a certain time passes where the student can't drag anything, but the sequences are "analysed" so they get a bit of the color of their supposed cluster.
+- Split up text into panels or reduce.
 
-### Requirements:
-**MUSTS**
-1. There is a frame that sequences appear into and accumulate (tetris)
-2. Student can drag sequences to a cluster
-3. Sequence gets added to cluster, remains on screen
-4. Game signals that sequence is in wrong cluster.
+*The text felt long to most of the students. I think splitting it up into more panels, adding some visuals, and making the text font and color a bit better would be a good improvement, since the instructions weren't clear to a lot of the students, indicating that they didn't read it all the way through.*
 
-**SHOULDS**
-1. There is a point based system. Students can improve score
-2. There are 2 modes (3rd grade and 6th grade), WOULD: teacher can add a new set of sequences
-3. There is an analysis mode that accelerates performance, and comes at a time cost from doing it manually (tune to make it good to use)
+- Fix or remove the "Analyze" button.
+
+*The analyze button at the bottom center is what I got the most questions about. The original idea was to make it be a bit like spending time on programming or designing an algorithm, and give the users a time penalty in exhange for changing the color of the sequence blocks to match their correct cluster. I think this could easily become very complicated, but having the button do nothing is confusing, so I think either fix it, or it needs to be removed.*
+
+- Tune the difficulty of the levels
+
+*The difficulty difference between the third and fifth grade levels is not enough at the moment. Most students felt no difference. I think the sequences need to be tweaked: the spèed has little influence at the moment, most students go a lot slower than the spawning (at least in the first few tries)*
+
+## Repository information
+```docs``` has all of the documentation for the project, including the project setup (requirements, brainstorming, etc), synthesis of the feedback (as well as the feedback interview notes), and the report.
+
+```src``` has the code for the project. In the ```data```folder, you can find the input files, including the sequences and instruction texts. You can change these as you like (keeping the format). In ```models``` there are some classes used in the project. ```view``` has the user interface files. ```main.py`` executes the application.
+
+In ``testing`` there are some intermediate files for the project, from previous attempts, like the code for the terminal-based version of the game (`functionality_test.py`) or the tetris attempt (unsuccesful).
